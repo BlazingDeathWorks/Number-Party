@@ -1,0 +1,18 @@
+{
+    "name": "NumberParty.PlayUIManager",
+    "rootNamespace": "NumberParty.PlayUIManager",
+    "references": [
+        "GUID:ed878c4b17d76444cb7fb7ae18232e54"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
