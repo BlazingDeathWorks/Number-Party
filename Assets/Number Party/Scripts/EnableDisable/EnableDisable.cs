@@ -17,6 +17,9 @@ namespace NumberParty
             {
                 container = transform.GetChild(0);
 
+                //Set container back to false
+                container.gameObject.SetActive(false);
+
                 ActOnChannels(() => enableChannel.AddAction(EnableContainer), () => disableChannel.AddAction(DisableContainer));
             }
 

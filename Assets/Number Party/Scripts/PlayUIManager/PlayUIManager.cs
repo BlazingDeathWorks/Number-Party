@@ -16,22 +16,12 @@ namespace NumberParty
             private ActionChannel playUI_DisableChannel = null;
             private Transform container = null;
             private InputField inputField = null;
-            private const int characterLimit = 1;
-            private const string inputLimit = "0123456789";
 
             private void Awake()
             {
-                //Initialize 
+                //Initialize
                 container = transform.GetChild(0);
-                inputField = GetComponentInChildren<InputField>();
-
-                //Set container back to false
-                container.gameObject.SetActive(false);
-
-                //Customizing inputField
-                if (inputField == null) return;
-                inputField.characterLimit = characterLimit;
-                inputField.onValidateInput += ValidateInput;
+                inputField = container.GetComponentInChildren<InputField>();
 
                 //Add ClearInputField Method to Action Call
                 playUI_DisableChannel?.AddAction(ClearInputField);
@@ -46,15 +36,6 @@ namespace NumberParty
                 inputField.text = string.Empty;
             }
 
-            private char ValidateInput(string text, int charIndex, char addedChar)
-            {
-                if (inputLimit.Contains(addedChar.ToString()))
-                {
-                    return addedChar;
-                }
-                return '\0';
-            }
-
             private void OnValueChange()
             {
                 if (string.IsNullOrEmpty(inputField.text)) return;
@@ -64,7 +45,7 @@ namespace NumberParty
             private IEnumerator LetsPlay()
             {
                 const float waitTime = 0.4f;
-                PlayerPrefs.SetInt(PlayerPrefsNameManager.playerPrefsPlayers, Int32.Parse(inputField.text));
+                PlayerPrefs.SetString(PlayerPrefsNameManager.playerPrefsPlayers, inputField.text);
                 yield return new WaitForSecondsRealtime(waitTime);
                 SceneTransitioner.NextScene();
             }

@@ -7,5 +7,6 @@ namespace NumberParty
     public static class PlayerPrefsNameManager
     {
         public static string playerPrefsPlayers { get; private set; } = "Players";
+        public static string playerPrefsRandomRange { get; private set; } = "RandomRange";
     }
 }
