@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace NumberParty
 {
@@ -10,9 +10,8 @@ namespace NumberParty
         public static GameManager instance = null;
 
         [SerializeField]
-        private Button continueButton = null;
-        [SerializeField]
         private ActionChannel onClickChannel = null;
+        private ContinueSource continueSource = null;
 
         public int playerIndex { get; private set; } = 1;
         private int players = 0;
@@ -31,20 +30,42 @@ namespace NumberParty
             DontDestroyOnLoad(gameObject);
 
             onClickChannel?.AddAction(SceneTransitioner.NextScene);
+        }
 
-            if (continueButton == null) return;
-            continueButton.gameObject.SetActive(false);
+        private void SetContinueSource()
+        {
+            continueSource = GameObject.Find("Continue Source").GetComponent<ContinueSource>();
+        }
 
+        private void SetPlayers()
+        {
             players = int.Parse(PlayerPrefs.GetString(PlayerPrefsNameManager.playerPrefsPlayers));
+        }
+
+        private void Update()
+        {
+            if(SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                if(continueSource == null)
+                {
+                    SetContinueSource();
+                }
+            }
+        }
+
+        public void ClearPlayerDatas()
+        {
+            playerDatas = new List<PlayerData>();
+            playerIndex = 1;
         }
 
         public void AddPlayerData(PlayerData playerData)
         {
             playerDatas.Add(playerData);
+            SetPlayers();
             if (playerIndex >= players)
             {
-                if (continueButton == null) return;
-                continueButton.gameObject.SetActive(true);
+                continueSource.ContinueEnable();
                 return;
             }
             playerIndex++;

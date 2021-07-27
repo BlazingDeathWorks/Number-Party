@@ -20,7 +20,7 @@ namespace NumberParty.PlayUIManager
         //Method to add to submit channel
         public void SubmitPlayerData()
         {
-            if (inputField == null || string.IsNullOrEmpty(inputField.text)) return;
+            if (string.IsNullOrEmpty(inputField.text)) return;
             int number = int.Parse(inputField.text);
             if (!string.IsNullOrEmpty(GameManager.instance.ReturnPlayerCodeName(number))) return;
             GameManager.instance.AddPlayerData(new PlayerData($"P{GameManager.instance.playerIndex}", number));

@@ -25,6 +25,7 @@ namespace NumberParty.PlayUIManager
 
         public void TryAgain()
         {
+            GameManager.instance.ClearPlayerDatas();
             SceneTransitioner.ToScene(0);
         }
     }

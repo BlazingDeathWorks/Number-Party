@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace NumberParty.EnableDisable
 {
@@ -11,11 +12,16 @@ namespace NumberParty.EnableDisable
         [SerializeField]
         private Transform grid = null;
 
+        [SerializeField]
+        private ContinueSource continueButton = null;
+
         int players = 0;
 
-        private void Awake()
+        private void Start()
         {
             players = int.Parse(PlayerPrefs.GetString(PlayerPrefsNameManager.playerPrefsPlayers));
+
+            continueButton.ContinueDisable();
 
             InstantiatePlayers();
         }
