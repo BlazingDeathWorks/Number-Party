@@ -10,15 +10,12 @@ namespace NumberParty
         public static GameManager instance = null;
 
         [SerializeField]
-        GameObject prefab = null;
-        [SerializeField]
-        private Transform grid = null;
-
-        [SerializeField]
         private Button continueButton = null;
+        [SerializeField]
+        private ActionChannel onClickChannel = null;
 
         public int playerIndex { get; private set; } = 1;
-        int players = 0;
+        private int players = 0;
 
         private List<PlayerData> playerDatas = new List<PlayerData>();
 
@@ -33,34 +30,35 @@ namespace NumberParty
             instance = this;
             DontDestroyOnLoad(gameObject);
 
+            onClickChannel?.AddAction(SceneTransitioner.NextScene);
+
             if (continueButton == null) return;
             continueButton.gameObject.SetActive(false);
 
             players = int.Parse(PlayerPrefs.GetString(PlayerPrefsNameManager.playerPrefsPlayers));
-
-            InstantiatePlayers();
         }
 
         public void AddPlayerData(PlayerData playerData)
         {
             playerDatas.Add(playerData);
-            if(playerIndex >= players)
+            if (playerIndex >= players)
             {
                 if (continueButton == null) return;
-                //continueButton.gameObject.
+                continueButton.gameObject.SetActive(true);
                 return;
             }
             playerIndex++;
         }
 
-        private void InstantiatePlayers()
+        public string ReturnPlayerCodeName(int randomValue)
         {
-            if (prefab == null || grid == null) return;
-            for (int i = 0; i < players; i++)
+            if (playerDatas == null) return null;
+            foreach(PlayerData playerData in playerDatas)
             {
-                GameObject prefabInstance = Instantiate(prefab, transform.position, Quaternion.identity);
-                prefabInstance.transform.SetParent(grid);
+                if (playerData.number != randomValue) continue;
+                return playerData.playerCodeName;
             }
+            return null;
         }
     }
 

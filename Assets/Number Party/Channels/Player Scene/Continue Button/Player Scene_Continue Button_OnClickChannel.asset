@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a081d251a8edcb4a9811d8f30e09c7a, type: 3}
-  m_Name: Player Scene_Player_Submit Button Channel
+  m_Name: Player Scene_Continue Button_OnClickChannel
   m_EditorClassIdentifier: 

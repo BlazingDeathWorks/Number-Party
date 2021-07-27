@@ -11,5 +11,10 @@ namespace NumberParty
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+
+        public static void ToScene(int index)
+        {
+            SceneManager.LoadScene(index);
+        }
     }
 }

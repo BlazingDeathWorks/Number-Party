@@ -223,7 +223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2640df55f3ff77a4eb97d0ccc1c257ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  submitButton_OnClickChannel: {fileID: 11400000, guid: 1658c853114b1584d89729e618fe4269, type: 2}
 --- !u!1 &2707564791696397398
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,9 +344,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 1658c853114b1584d89729e618fe4269, type: 2}
-        m_TargetAssemblyTypeName: NumberParty.ActionChannel, GlobalAssembly
-        m_MethodName: CallAction
+      - m_Target: {fileID: 2707564791612399487}
+        m_TargetAssemblyTypeName: NumberParty.PlayUIManager.Player, NumberParty.PlayUIManager
+        m_MethodName: SubmitPlayerData
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

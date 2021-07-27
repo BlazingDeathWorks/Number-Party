@@ -7,8 +7,6 @@ namespace NumberParty.PlayUIManager
 {
     public class Player : MonoBehaviour
     {
-        [SerializeField]
-        private ActionChannel submitButton_OnClickChannel = null;
         private InputField inputField = null;
 
         private void Awake()
@@ -17,16 +15,15 @@ namespace NumberParty.PlayUIManager
             inputField = GetComponentInChildren<InputField>();
 
             inputField.characterLimit = GetCharacterLimit();
-
-            //Channel Adding
-            submitButton_OnClickChannel?.AddAction(SubmitPlayerData);
         }
 
         //Method to add to submit channel
-        private void SubmitPlayerData()
+        public void SubmitPlayerData()
         {
             if (inputField == null || string.IsNullOrEmpty(inputField.text)) return;
-            GameManager.instance.AddPlayerData(new PlayerData($"Player{GameManager.instance.playerIndex}", int.Parse(inputField.text)));
+            int number = int.Parse(inputField.text);
+            if (!string.IsNullOrEmpty(GameManager.instance.ReturnPlayerCodeName(number))) return;
+            GameManager.instance.AddPlayerData(new PlayerData($"P{GameManager.instance.playerIndex}", number));
         }
 
         private int GetCharacterLimit()
